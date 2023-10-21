@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { authsliceAction } from "../reduxStore/auth";
 
 const Signup = () => {
   // states are used to store the data that user enters
@@ -6,6 +9,10 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+  //  import dispatch function from redux
+  const dispatch = useDispatch();
+  //  import navigation from react router dom
+  const navigate = useNavigate();
   //  signup handler function that send the user entered data to firebase
   const signupHandler = async (e) => {
     e.preventDefault();
@@ -35,10 +42,12 @@ const Signup = () => {
         if (res.ok) {
           const data = await res.json();
           console.log(data);
+          dispatch(authsliceAction.login(data.idToken));
           setName("");
           setEmail("");
           setPassword("");
           setConfirmPass("");
+          navigate("/home", { replace: true });
         }
       } catch (error) {
         console.error(error.message);
@@ -103,12 +112,12 @@ const Signup = () => {
           </div>
           <div className="text-grey-dark mt-6">
             Already have an account?
-            <a
-              className="no-underline border-b border-blue-400 text-blue-400"
-              href="./Login"
+            <Link
+              className="no-underline border-b border-green-400 text-green-500"
+              to="/Login"
             >
               Log in
-            </a>
+            </Link>
           </div>
         </div>
       </div>

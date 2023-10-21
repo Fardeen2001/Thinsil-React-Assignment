@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         accent: "#179957",
-        accentDark: "#184O47",
+        accentDark: "#184047",
       },
       container: {
         center: true,

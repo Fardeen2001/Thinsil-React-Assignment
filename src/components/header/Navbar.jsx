@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar component */}
-      <div className="container hidden lg:block">
+      <div className="container lg:block">
         <div className="flex justify-between items-center pt-8">
           <h1 className="text-4xl font-medium font-serif">Thinsil store</h1>
           <div className="relative w-full max-w-[500px]">
