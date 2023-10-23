@@ -40,7 +40,7 @@ const Login = () => {
         dispatch(authsliceAction.login(data.idToken));
         setEmail("");
         setPassword("");
-        navigate("/home", { replace: true });
+        navigate("/", { replace: true });
       }
     } catch (error) {
       console.log(error.message);

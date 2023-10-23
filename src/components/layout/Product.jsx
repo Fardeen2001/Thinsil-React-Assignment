@@ -1,12 +1,15 @@
 // import link
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import icons
 import { BsPlus, BsEyeFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../reduxStore/cart";
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
   // destructuring products
   const { id, image, title, price, category } = product;
   return (
-    <>
+    <div className="flex flex-col">
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
         <div className="w-full h-full flex justify-center items-center">
           {/* image */}
@@ -19,8 +22,14 @@ const Product = ({ product }) => {
           </div>
         </div>
         {/* buttons */}
-        <div className="absolute top-6 -right-11 bg-accent/40 p-2 flex flex-col items-center justify-center gap-y-2 opacity-0 group-hover:opacity-100 transition-all">
-          <button>
+        <div className="absolute top-6 -right-11 group-hover:right-5 p-2 flex flex-col items-center justify-center gap-y-2 opacity-0 group-hover:opacity-100 transition-all">
+          <button
+            onClick={() => {
+              dispatch(
+                cartActions.addToCart({ id, image, title, price, category })
+              );
+            }}
+          >
             <div className="flex justify-center items-center text-white w-12 h-12 bg-accent">
               <BsPlus className="text-3xl" />
             </div>
@@ -33,7 +42,17 @@ const Product = ({ product }) => {
           </NavLink>
         </div>
       </div>
-    </>
+      {/* category, title and price */}
+      <div>
+        <div className="category text-sm capitalize text-gray-500">
+          {category}
+        </div>
+        <Link to={`/product/${id}`}>
+          <h2 className="font-semibold">{title}</h2>
+        </Link>
+        <div className="price font-semibold mb-1">Rs {price.toFixed(2)}</div>
+      </div>
+    </div>
   );
 };
 

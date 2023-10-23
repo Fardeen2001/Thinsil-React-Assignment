@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://fakestoreapi.com/products");
+        const res = await fetch(`${import.meta.env.VITE_FAKESTOREAPI}`);
         if (!res.ok) {
           throw new Error("error while fetching data");
         }

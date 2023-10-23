@@ -47,7 +47,7 @@ const Signup = () => {
           setEmail("");
           setPassword("");
           setConfirmPass("");
-          navigate("/home", { replace: true });
+          navigate("/", { replace: true });
         }
       } catch (error) {
         console.error(error.message);
