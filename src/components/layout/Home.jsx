@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allProductsAction } from "../../reduxStore/allproducts";
 import Product from "./Product";
+import HeroSection from "./HeroSection";
 
 const Home = () => {
   // dispatching products from redux store
@@ -33,6 +34,7 @@ const Home = () => {
   });
   return (
     <div>
+      <HeroSection />
       <section className="py-16">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-7 max-w-sm md:max-w-none mx-auto md:mx-0">

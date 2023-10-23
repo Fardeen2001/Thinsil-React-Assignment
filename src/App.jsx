@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        {isLoggedIn && <Navbar />}
         <Routes>
           <Route
             exact

@@ -54,13 +54,16 @@ const ForgotPassword = () => {
 
               <button
                 type="submit"
-                className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-accent focus:outline-none my-1"
+                className="w-full text-center py-3 rounded bg-accent text-white hover:bg-accentDark focus:outline-none my-1"
               >
                 Change password
               </button>
             </form>
             <div className="text-center mt-2">
-              <Link to="/login" className="text-green-500">
+              <Link
+                to="/login"
+                className="text-accent border-b border-accent hover:text-accentDark hover:border-none"
+              >
                 Back to Login
               </Link>
             </div>

@@ -104,16 +104,16 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none my-1"
+                className="w-full text-center py-3 rounded bg-accent text-white hover:bg-accentDark focus:outline-none my-1"
               >
                 Create Account
               </button>
             </form>
           </div>
-          <div className="text-grey-dark mt-6">
+          <div className="text-grey-dark">
             Already have an account?
             <Link
-              className="no-underline border-b border-green-400 text-green-500"
+              className="no-underline border-b border-accent text-accent hover:border-none hover:text-accentDark"
               to="/Login"
             >
               Log in

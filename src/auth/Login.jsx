@@ -78,13 +78,16 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-accent focus:outline-none my-1"
+                className="w-full text-center py-3 rounded bg-accent text-white hover:bg-accentDark focus:outline-none my-1"
               >
                 Log In
               </button>
             </form>
             <div className="text-center">
-              <Link to="/forgot" className="text-green-500 mt-6">
+              <Link
+                to="/forgot"
+                className="text-accent mt-6 hover:text-accentDark"
+              >
                 Forgot Password?
               </Link>
             </div>
@@ -93,7 +96,7 @@ const Login = () => {
           <div className="text-gray-600 mt-6">
             Do not have an account?
             <Link
-              className="no-underline border-b border-green-500 text-green-500"
+              className="no-underline border-b border-accent text-accent hover:text-accentDark hover:border-none"
               to="/signup"
             >
               Signup
