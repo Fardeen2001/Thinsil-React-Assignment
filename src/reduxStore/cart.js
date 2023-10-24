@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 const initialCartState = {
   cartItems: [],
   totalQuantity: 0,
@@ -26,6 +27,16 @@ export const cartSlice = createSlice({
         });
         state.totalQuantity++;
         state.totalAmount += newItem.price;
+        toast.success("Item added to cart", {
+          position: "bottom-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
         existingItem.qty++;
         state.totalQuantity++;
@@ -40,6 +51,16 @@ export const cartSlice = createSlice({
         state.cartItems = state.cartItems.filter((item) => item.id !== id);
         state.totalAmount -= existingItem.totalPrice;
         state.totalQuantity -= existingItem.qty;
+        toast.success("Item removed from cart", {
+          position: "bottom-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
         existingItem.qty--;
         existingItem.totalPrice -= existingItem.price;
@@ -51,6 +72,16 @@ export const cartSlice = createSlice({
       state.cartItems = [];
       state.totalAmount = 0;
       state.totalQuantity = 0;
+      toast.success("Cart cleared", {
+        position: "bottom-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     },
   },
 });

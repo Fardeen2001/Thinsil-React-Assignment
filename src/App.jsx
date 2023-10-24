@@ -9,6 +9,9 @@ import ForgotPassword from "./auth/ForgotPassword";
 import Checkout from "./components/layout/Checkout";
 import Footer from "./components/footer/Footer";
 import ProductDetails from "./components/layout/ProductDetails";
+import { ToastContainer } from "react-toastify";
+// import tostify css
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // getting user is logged in or not from redux store
@@ -19,6 +22,18 @@ function App() {
       {/* app component */}
       <BrowserRouter>
         {isLoggedIn && <Navbar />}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <Routes>
           {/* routes to redirects from one page to another page as SPA */}
           {/* checks paths if exact path found then redirects to that page */}

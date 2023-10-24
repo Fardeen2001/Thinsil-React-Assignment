@@ -2,6 +2,7 @@
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../reduxStore/cart";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   // importing dispatch
@@ -185,7 +186,22 @@ const Checkout = () => {
       {/* total amount dispalyed to be payed by user */}
       <div className="font-bold">SubTotal : Rs {total}</div>
       {/* final pay button */}
-      <button className="flex  m-2 text-black bg-accent border-0 p-2 focus:outline-none hover:bg-accentDark hover:text-white rounded text-sm">
+      <button
+        className="flex  m-2 text-black bg-accent border-0 p-2 focus:outline-none hover:bg-accentDark hover:text-white rounded text-sm"
+        onClick={() => {
+          dispatch(cartActions.clearCart());
+          toast.success("Thank you!, Visit again", {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }}
+      >
         Pay Rs {total}
       </button>
     </div>
