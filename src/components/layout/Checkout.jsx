@@ -1,11 +1,21 @@
-import { useSelector } from "react-redux";
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../reduxStore/cart";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const total = useSelector((state) => state.cart.totalAmount);
+  const AddQuantityHandler = (id, price) => {
+    console.log(id);
+    dispatch(cartActions.addToCart({ id, price }));
+  };
+  const removeQuantityHandler = (id) => {
+    dispatch(cartActions.removeFromCart(id));
+  };
   return (
-    <div className="container w-[70vw] m-auto">
-      {" "}
-      <h1 className="font-bold text-3xl my-8 text-center">Checkout</h1>{" "}
+    <div className="container w-[70vw] mx-auto pt-20">
+      <h1 className="font-bold text-3xl text-center">Checkout</h1>{" "}
       <h2 className="text-xl font-bold">Delivery Details</h2>
       <div className="mx-auto flex my-4">
         <div className="px-2 w-1/2">
@@ -121,13 +131,13 @@ const Checkout = () => {
         )}
         {cartItems &&
           cartItems.map((item) => (
-            <li key={item.itemCode}>
+            <li key={item.id}>
               <div className="item flex my-3">
                 <div className="w-full md:w-2/6 font-semibold text-sm md:text-base">
-                  {item.name} ({item.size},{item.varient})
+                  {item.title} ({item.price.toFixed(2)})
                 </div>
                 <div className="w-full md:w-2/12 font-semibold text-sm md:text-base">
-                  ₹ {item.totalPrice}
+                  Rs {item.totalPrice.toFixed(2)}
                 </div>
                 <div className="w-2/1 flex items-center justify-center text-lg">
                   <AiOutlineMinusCircle
@@ -140,7 +150,7 @@ const Checkout = () => {
                   <AiOutlinePlusCircle
                     className="cursor-pointer"
                     onClick={() => {
-                      AddQuantityHandler(item.itemCode, item.price);
+                      AddQuantityHandler(item.id, item.price);
                     }}
                   />
                 </div>
@@ -148,9 +158,9 @@ const Checkout = () => {
             </li>
           ))}
       </ol>
-      <div className="font-bold">SubTotal : ₹ {total}</div>
-      <button className="flex  m-2 text-black bg-slate-200 border-0 p-2 focus:outline-none hover:bg-stone-600 hover:text-white rounded text-sm">
-        Pay ₹ {total}
+      <div className="font-bold">SubTotal : Rs {total}</div>
+      <button className="flex  m-2 text-black bg-accent border-0 p-2 focus:outline-none hover:bg-accentDark hover:text-white rounded text-sm">
+        Pay Rs {total}
       </button>
     </div>
   );

@@ -11,9 +11,9 @@ const Product = ({ product }) => {
   return (
     <div className="flex flex-col">
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full h-full flex justify-center items-center cursor-pointer">
           {/* image */}
-          <div className="w-[200px] mx-auto flex justify-center items-center">
+          <div className="w-[200px] mx-auto flex justify-center items-center ">
             <img
               src={image}
               alt={title}
