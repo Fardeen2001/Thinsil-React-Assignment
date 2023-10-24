@@ -1,3 +1,4 @@
+// importing components, react router and redux
 import { useSelector } from "react-redux";
 import Signup from "./auth/Signup";
 import Navbar from "./components/header/Navbar";
@@ -15,9 +16,12 @@ function App() {
 
   return (
     <>
+      {/* app component */}
       <BrowserRouter>
         {isLoggedIn && <Navbar />}
         <Routes>
+          {/* routes to redirects from one page to another page as SPA */}
+          {/* checks paths if exact path found then redirects to that page */}
           <Route
             exact
             path="/"

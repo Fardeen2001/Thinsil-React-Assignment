@@ -1,4 +1,6 @@
+//import useState
 import { useState } from "react";
+// import from react router
 import { Link, useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -10,13 +12,17 @@ const ForgotPassword = () => {
   const forgotHandler = async (e) => {
     e.preventDefault();
     try {
+      // api used to reset password from firebase that send reset mail to user
       const res = await fetch(
         `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${
-          import.meta.env.FIREBASEAPI
+          import.meta.env.VITE_FIREBASEAPI
         }`,
         {
           method: "POST",
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({
+            requestType: "PASSWORD_RESET",
+            email,
+          }),
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -24,7 +30,9 @@ const ForgotPassword = () => {
         throw new Error("invalid details");
       }
       if (res.ok) {
+        // reset inputs after submitting
         setEmail("");
+        // if success then redirect to login page
         navigate("/login", { replace: true });
       }
     } catch (error) {
@@ -33,13 +41,14 @@ const ForgotPassword = () => {
   };
   return (
     <>
-      {" "}
+      {/* forgot password component */}{" "}
       <div className="bg-grey-lighter min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
           <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-7 text-4xl text-center font-serif">
               Forgot Password
             </h1>
+            {/* form to accept email from user */}
             <form onSubmit={forgotHandler}>
               <input
                 type="text"
@@ -51,7 +60,7 @@ const ForgotPassword = () => {
                 }}
                 value={email}
               />
-
+              {/* submit button */}
               <button
                 type="submit"
                 className="w-full text-center py-3 rounded bg-accent text-white hover:bg-accentDark focus:outline-none my-1"
@@ -59,6 +68,7 @@ const ForgotPassword = () => {
                 Change password
               </button>
             </form>
+            {/* revert to login page link */}
             <div className="text-center mt-2">
               <Link
                 to="/login"

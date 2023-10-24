@@ -1,12 +1,12 @@
+// importing poster image from assests
 import poster from "../../assets/poster.jpg";
 const HeroSection = () => {
   return (
-    <div>
-      <br />
-      <br />
-      <br />
-      <img src={poster} alt="poster" className="md:h-[50vh] w-full" />
-    </div>
+    <>
+      {/* hero section component */}
+      {/* image */}
+      <img src={poster} alt="poster" className="md:h-[50vh] w-full pt-16" />
+    </>
   );
 };
 

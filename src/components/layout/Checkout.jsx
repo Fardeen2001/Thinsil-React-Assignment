@@ -1,25 +1,33 @@
+// importing icons and react router
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../reduxStore/cart";
 
 const Checkout = () => {
+  // importing dispatch
   const dispatch = useDispatch();
+  // importing from redux store
   const cartItems = useSelector((state) => state.cart.cartItems);
   const total = useSelector((state) => state.cart.totalAmount);
+  // function for adding and removing items from cart
   const AddQuantityHandler = (id, price) => {
-    console.log(id);
+    // dispatching action
     dispatch(cartActions.addToCart({ id, price }));
   };
   const removeQuantityHandler = (id) => {
+    // dispatching action
     dispatch(cartActions.removeFromCart(id));
   };
   return (
+    // check out page
     <div className="container w-[70vw] mx-auto pt-20">
       <h1 className="font-bold text-3xl text-center">Checkout</h1>{" "}
       <h2 className="text-xl font-bold">Delivery Details</h2>
+      {/* form to accept user details to deliver item */}
       <div className="mx-auto flex my-4">
         <div className="px-2 w-1/2">
           {" "}
+          {/* input for full name */}
           <div className=" mb-2">
             <label
               htmlFor="full-name"
@@ -36,6 +44,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="px-2 w-1/2">
+          {/* input for email */}
           <div className=" mb-2">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
               Email
@@ -50,6 +59,8 @@ const Checkout = () => {
         </div>
       </div>
       <div className="px-2 w-full">
+        {/* input for address */}
+
         <div className=" mb-2">
           <label htmlFor="address" className="leading-7 text-sm text-gray-600">
             Address
@@ -65,7 +76,7 @@ const Checkout = () => {
       </div>
       <div className="mx-auto flex my-2">
         <div className="px-2 w-1/2">
-          {" "}
+          {/* input for phone number */}
           <div className=" mb-2">
             <label htmlFor="phone" className="leading-7 text-sm text-gray-600">
               Phone
@@ -79,6 +90,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="px-2 w-1/2">
+          {/* input for city */}
           <div className=" mb-2">
             <label htmlFor="city" className="leading-7 text-sm text-gray-600">
               City
@@ -94,7 +106,7 @@ const Checkout = () => {
       </div>
       <div className="mx-auto flex my-2">
         <div className="px-2 w-1/2">
-          {" "}
+          {/* input for state */}
           <div className=" mb-2">
             <label htmlFor="state" className="leading-7 text-sm text-gray-600">
               State
@@ -108,6 +120,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="px-2 w-1/2">
+          {/* input for pincode */}
           <div className=" mb-2">
             <label
               htmlFor="pincode"
@@ -124,32 +137,43 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      {/* display added cart item */}
       <h2 className="text-xl font-bold">Cart review</h2>
       <ol className="list-decimal font-semibold px-5">
+        {/* if cart is empty */}
         {cartItems.length === 0 && (
           <div className="my-4 font-semibold">Your Cart is Empty!</div>
         )}
+        {/* if cart has items */}
         {cartItems &&
           cartItems.map((item) => (
+            // cart items mapped and display the items list
             <li key={item.id}>
               <div className="item flex my-3">
                 <div className="w-full md:w-2/6 font-semibold text-sm md:text-base">
+                  {/* title and price */}
                   {item.title} ({item.price.toFixed(2)})
                 </div>
                 <div className="w-full md:w-2/12 font-semibold text-sm md:text-base">
+                  {/* total price */}
                   Rs {item.totalPrice.toFixed(2)}
                 </div>
                 <div className="w-2/1 flex items-center justify-center text-lg">
+                  {/* minus icon for decrease quantity */}
                   <AiOutlineMinusCircle
                     className="cursor-pointer"
                     onClick={() => {
+                      // function for dispatching actions
                       removeQuantityHandler(item.id);
                     }}
                   />{" "}
+                  {/* display item quantity */}
                   <span className="mx-2 text-sm">{item.qty}</span>
+                  {/* plus icon for increase quantity */}
                   <AiOutlinePlusCircle
                     className="cursor-pointer"
                     onClick={() => {
+                      // function for dispatching actions
                       AddQuantityHandler(item.id, item.price);
                     }}
                   />
@@ -158,7 +182,9 @@ const Checkout = () => {
             </li>
           ))}
       </ol>
+      {/* total amount dispalyed to be payed by user */}
       <div className="font-bold">SubTotal : Rs {total}</div>
+      {/* final pay button */}
       <button className="flex  m-2 text-black bg-accent border-0 p-2 focus:outline-none hover:bg-accentDark hover:text-white rounded text-sm">
         Pay Rs {total}
       </button>

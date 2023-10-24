@@ -1,3 +1,4 @@
+// imports from React,react router and redux store
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,8 +21,8 @@ const Signup = () => {
       alert("password not matched");
     } else {
       try {
+        // api to signup from firebase
         const res = await fetch(
-          // eslint-disable-next-line no-undef
           `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${
             import.meta.env.VITE_FIREBASEAPI
           }`,
@@ -37,16 +38,19 @@ const Signup = () => {
           }
         );
         if (!res.ok) {
+          //error handler
           throw new Error("invalid while signup");
         }
         if (res.ok) {
           const data = await res.json();
-          console.log(data);
+          // dispatch action
           dispatch(authsliceAction.login(data.idToken));
+          // reset inputs after submitting
           setName("");
           setEmail("");
           setPassword("");
           setConfirmPass("");
+          // if success then redirect to home page
           navigate("/", { replace: true });
         }
       } catch (error) {
@@ -56,12 +60,12 @@ const Signup = () => {
   };
   return (
     <>
-      {" "}
+      {/* signup component */}{" "}
       <div className="bg-gray-100 w-full min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
           <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-7 text-4xl text-center font-serif">Sign up</h1>
-            {/* signup form */}
+            {/* form to accept inputs from user to signup */}
             <form onSubmit={signupHandler}>
               <input
                 type="text"
@@ -101,7 +105,7 @@ const Signup = () => {
                 onChange={(e) => setConfirmPass(e.target.value)}
                 value={confirmPass}
               />
-
+              {/* submit button */}
               <button
                 type="submit"
                 className="w-full text-center py-3 rounded bg-accent text-white hover:bg-accentDark focus:outline-none my-1"
@@ -110,6 +114,7 @@ const Signup = () => {
               </button>
             </form>
           </div>
+          {/* link to redirect to login page */}
           <div className="text-grey-dark">
             Already have an account?
             <Link
