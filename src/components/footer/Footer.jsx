@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-accentDark py-10 flex">
+    <footer className="bg-accentDark py-5 md:py-10 flex">
       <div className="container mx-auto">
-        <p className="text-white">
+        <p className="text-white text-xs md:text-base">
           Copyright &copy; THINSIL STORE 2023. All rights reserved.
         </p>
       </div>
-      <div className="socials flex items-center gap-5 text-white mx-10">
+      <div className="socials flex items-center gap-1 md:gap-5 text-white mx-10">
         <Link to={"https://github.com/Fardeen2001"} target="_blank">
           <AiOutlineGithub size={30} />
         </Link>

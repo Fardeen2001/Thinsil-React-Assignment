@@ -23,49 +23,51 @@ const Navbar = () => {
     });
   }, []);
   return (
-    <header
-      className={`${
-        active ? "bg-accent" : "bg-accentDark"
-      } fixed w-full z-50 transition-all`}
-    >
-      {/* Navbar component */}
-      <div className="container lg:block ">
-        <div className="flex justify-between items-center p-4">
-          <Link to={"/"}>
-            <h1 className="text-4xl text-gray-200 font-medium font-serif">
-              Thinsil store
-            </h1>
-          </Link>
+    <>
+      <header
+        className={`${
+          active ? "bg-accent" : "bg-accentDark"
+        } fixed w-full z-20 transition-all`}
+      >
+        {/* Navbar component */}
+        <div className="container lg:block ">
+          <div className="flex justify-between items-center p-4">
+            <Link to={"/"}>
+              <h1 className="text-4xl text-gray-200 font-medium font-serif">
+                Thinsil store
+              </h1>
+            </Link>
 
-          <div className="flex gap-4">
-            {loggedIn && (
-              <button
-                onClick={() => {
-                  dispatch(authsliceAction.logout());
-                  navigate("/signup", { replace: true });
-                }}
-                className="rounded-full bg-gray-200 p-2 cursor-pointer"
-                title="Logout"
-              >
-                <AiOutlineUser size={25} />
+            <div className="flex gap-4">
+              {loggedIn && (
+                <button
+                  onClick={() => {
+                    dispatch(authsliceAction.logout());
+                    navigate("/signup", { replace: true });
+                  }}
+                  className="rounded-full bg-gray-200 p-2 cursor-pointer"
+                  title="Logout"
+                >
+                  <AiOutlineUser size={25} />
+                </button>
+              )}
+              {!loggedIn && (
+                <button className="rounded-xl bg-gray-200 p-2 cursor-pointer font-bold">
+                  Sign Up
+                </button>
+              )}
+              <button onClick={cartHandler}>
+                <div className="rounded-full bg-gray-200 p-2 relative">
+                  <AiOutlineShoppingCart size={25} />
+                  <CartCountBadge />
+                </div>
               </button>
-            )}
-            {!loggedIn && (
-              <button className="rounded-xl bg-gray-200 p-2 cursor-pointer font-bold">
-                Sign Up
-              </button>
-            )}
-            <button onClick={cartHandler}>
-              <div className="rounded-full bg-gray-200 p-2 relative">
-                <AiOutlineShoppingCart size={25} />
-                <CartCountBadge />
-              </div>
-            </button>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
       {toggleCart && <SideBarCart />}
-    </header>
+    </>
   );
 };
 

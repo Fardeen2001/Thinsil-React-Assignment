@@ -7,6 +7,7 @@ import Login from "./auth/Login";
 import ForgotPassword from "./auth/ForgotPassword";
 import Checkout from "./components/layout/Checkout";
 import Footer from "./components/footer/Footer";
+import ProductDetails from "./components/layout/ProductDetails";
 
 function App() {
   // getting user is logged in or not from redux store
@@ -26,6 +27,11 @@ function App() {
           <Route exact path={"/login"} element={<Login />} />
           <Route exact path={"/forgot"} element={<ForgotPassword />} />
           <Route exact path={"/checkout"} element={<Checkout />} />
+          <Route
+            exact
+            path={"/product/:productId"}
+            element={<ProductDetails />}
+          />
         </Routes>
         {isLoggedIn && <Footer />}
       </BrowserRouter>
